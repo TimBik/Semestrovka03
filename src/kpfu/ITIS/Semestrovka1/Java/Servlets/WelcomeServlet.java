@@ -24,7 +24,7 @@ public class WelcomeServlet extends HttpServlet {
         HttpSession session = req.getSession();
         if(session.getAttribute("user_curent") == null) {
             resp.setContentType("text/html");
-            RequestDispatcher dispatcher = req.getRequestDispatcher("jsp/welcome.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("Pages/welcome.html");
             dispatcher.forward(req, resp);
         }else {
 

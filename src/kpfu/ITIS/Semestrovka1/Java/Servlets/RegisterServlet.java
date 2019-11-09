@@ -25,7 +25,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/jsp");
-        RequestDispatcher rd = req.getRequestDispatcher("jsp/register.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("Pages/register.html");
         rd.forward(req, resp);
     }
 

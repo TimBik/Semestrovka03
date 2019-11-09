@@ -16,7 +16,7 @@ public class RecipeServlet extends HttpServlet {
         String user = (String) session.getAttribute("user_curent");
         if(user != null) {
             resp.setContentType("text/jsp");
-            RequestDispatcher dispatcher = req.getRequestDispatcher("jsp/recipe.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("html/recipe.html");
             dispatcher.forward(req, resp);
         }else {
             resp.sendRedirect(req.getContextPath() + "/login");

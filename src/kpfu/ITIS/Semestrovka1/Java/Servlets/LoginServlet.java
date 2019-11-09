@@ -17,7 +17,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/jsp");
-        RequestDispatcher dispatcher = req.getRequestDispatcher("jsp/login.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("Pages/login.html");
         dispatcher.forward(req, resp);
 
     }

@@ -21,6 +21,7 @@
             <img src="../img/b2.jpg">
             <div class="carousel-caption">
                 <h1 class="display-4">ИНГРЕДИЕНТЫ</h1>
+
                 <h6>3 яйца</h6>
                 <h6>1 ст. л. сахара</h6>
                 <h6>1 ч. л. соли</h6>

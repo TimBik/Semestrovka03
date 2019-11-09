@@ -19,7 +19,7 @@ public class ProfileServlet extends HttpServlet {
         User user= (User) session.getAttribute("user_curent");
         if(user != null) {
             resp.setContentType("text/html");
-            RequestDispatcher dispatcher = req.getRequestDispatcher("ftl/profile.ftl");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("Pages/profile.html");
             dispatcher.forward(req, resp);
         }else {
             resp.sendRedirect(req.getContextPath() + "/login");

@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="servlet-3_0-final-jar_and_schema">
+    <CLASSES>
+      <root url="file://$USER_HOME$/Downloads/servlet-3_0-final-jar_and_schema" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$USER_HOME$/Downloads/servlet-3_0-final-jar_and_schema" recursive="false" />
+  </library>
+</component>

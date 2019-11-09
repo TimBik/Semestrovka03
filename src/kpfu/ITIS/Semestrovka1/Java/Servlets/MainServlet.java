@@ -18,7 +18,7 @@ public class MainServlet extends HttpServlet {
         User user= (User) session.getAttribute("user_curent");
         if(user != null) {
             resp.setContentType("text/jsp");
-            RequestDispatcher dispatcher = req.getRequestDispatcher("jsp/main.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("Pages/main.html");
             dispatcher.forward(req, resp);
         }else {
             resp.sendRedirect(req.getContextPath() + "/login");

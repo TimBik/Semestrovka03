@@ -3,6 +3,7 @@ package kpfu.ITIS.Semestrovka1.Java.Daos;
 import kpfu.ITIS.Semestrovka1.Java.model.HavingId;
 
 import java.sql.*;
+
 //только классы будут T, класс наследуется от интерфейса?
 public class DaoHelper<T extends HavingId> {
     void checkingСhanges(PreparedStatement statement) {
@@ -16,9 +17,10 @@ public class DaoHelper<T extends HavingId> {
             e.printStackTrace();
         }
     }
-    static public ResultSet find(Connection connection,String nameFromBD,String by,String eql){
+
+    static public ResultSet find(Connection connection, String nameFromBD, String by, String eql) {
         ResultSet rs = null;
-        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM "+ nameFromBD + by)) {
+        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM " + nameFromBD + by)) {
             ps.setString(1, eql);
             rs = ps.executeQuery();
         } catch (SQLException e) {
@@ -26,6 +28,7 @@ public class DaoHelper<T extends HavingId> {
         }
         return rs;
     }
+
     public void setId(PreparedStatement statement, T model) {
         //Достаём созданное Id пользователя
         try (ResultSet set = statement.getGeneratedKeys();) {
