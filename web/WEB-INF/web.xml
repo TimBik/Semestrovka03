@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
-    <servlet>
+    <!--<servlet>
         <servlet-name>registers</servlet-name>
         <servlet-class>kpfu.ITIS.Semestrovka1.Java.Servlets.RegisterServlet</servlet-class>
     </servlet>
@@ -21,6 +21,6 @@
         <servlet-name>logins</servlet-name>
         <url-pattern>/logins</url-pattern>
     </servlet-mapping>
-
+-->
 
 </web-app>

@@ -19,22 +19,32 @@ public class UserDao implements CrudDao<User> {
     }
 
     @Override
-    public User find(String by, String eql) {
+    public User find(String eql, String by) {
         User user = null;
-        ResultSet rs = DaoHelper.find(connection, "myuser", by, eql);
-        if (rs != null) {
-            user = createUser(rs);
+        try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM myuser" + by)) {
+            statement.setString(1, eql);
+            ResultSet resultSet = statement.executeQuery();
+            //Если соответстующая строка найдена,обрабатываем её c помощью userRowMapper.
+            //Соответствунно получаем объект User.
+            if (resultSet.next()) {
+                user = createUser(resultSet);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return user;
     }
 
     public Optional<User> findUserByLogin(String login) {
-        return Optional.ofNullable(find("login", " WHERE " + login + " = ?"));
+        return Optional.ofNullable(find(login, " WHERE login=?"));
     }
 
 
     public Optional<User> findUserByEmail(String email) {
-        return Optional.ofNullable(find("email", " WHERE " + email + " = ?"));
+
+        return Optional.ofNullable(find(email, " WHERE email=?"));
+
     }
 
     private User createUser(ResultSet rs) {
@@ -53,17 +63,18 @@ public class UserDao implements CrudDao<User> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return user;
     }
 
     public Optional<List<User>> findAll() {
         List<User> users = null;
-        ResultSet rs = DaoHelper.find(connection, "myuser", "", "");
-        try {
+        try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM myuser")) {
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 users.add(createUser(rs));
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return Optional.ofNullable(users);
@@ -105,4 +116,11 @@ public class UserDao implements CrudDao<User> {
         }
     }
 
+    public void close() {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

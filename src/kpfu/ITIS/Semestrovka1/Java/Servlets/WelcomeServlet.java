@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 
 @WebServlet("/welcome")
 public class WelcomeServlet extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -22,13 +23,9 @@ public class WelcomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         HttpSession session = req.getSession();
-        if(session.getAttribute("user_curent") == null) {
-            resp.setContentType("text/html");
-            RequestDispatcher dispatcher = req.getRequestDispatcher("Pages/welcome.html");
-            dispatcher.forward(req, resp);
-        }else {
-
-        }
+        resp.setContentType("text/html");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("ftl/welcome.ftl");
+        dispatcher.forward(req, resp);
     }
 
 }

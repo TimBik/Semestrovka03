@@ -3,7 +3,7 @@ package kpfu.ITIS.Semestrovka1.Java.model;
 public class Ingredient implements HavingId{
     int id;
     int recipeId;
-    String neme;
+    String name;
     String amount;
 
     @Override
@@ -24,12 +24,12 @@ public class Ingredient implements HavingId{
         this.recipeId = recipeId;
     }
 
-    public String getNeme() {
-        return neme;
+    public String getName() {
+        return name;
     }
 
-    public void setNeme(String neme) {
-        this.neme = neme;
+    public void setName(String neme) {
+        this.name = neme;
     }
 
     public String getAmount() {
@@ -43,7 +43,7 @@ public class Ingredient implements HavingId{
     public Ingredient(int id, int recipeId, String neme, String amount) {
         this.id = id;
         this.recipeId = recipeId;
-        this.neme = neme;
+        this.name = neme;
         this.amount = amount;
     }
 }

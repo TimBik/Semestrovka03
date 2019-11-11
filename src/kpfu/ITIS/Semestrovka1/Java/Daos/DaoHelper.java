@@ -18,16 +18,6 @@ public class DaoHelper<T extends HavingId> {
         }
     }
 
-    static public ResultSet find(Connection connection, String nameFromBD, String by, String eql) {
-        ResultSet rs = null;
-        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM " + nameFromBD + by)) {
-            ps.setString(1, eql);
-            rs = ps.executeQuery();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return rs;
-    }
 
     public void setId(PreparedStatement statement, T model) {
         //Достаём созданное Id пользователя

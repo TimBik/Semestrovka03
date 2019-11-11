@@ -2,6 +2,7 @@ package kpfu.ITIS.Semestrovka1.Java.Servlets;
 
 import freemarker.template.Configuration;
 import freemarker.template.TemplateExceptionHandler;
+import kpfu.ITIS.Semestrovka1.Java.model.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,8 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-@WebServlet("/recipe")
-public class RecipeServlet extends HttpServlet {
+import java.util.HashMap;
+import java.util.Map;
+
+@WebServlet("/profileSetings")
+public class ProfileSetingsServlet extends HttpServlet {
+
     @Override
     public void init() {
         Configuration cfg = new Configuration(Configuration.VERSION_2_3_22);
@@ -20,22 +25,19 @@ public class RecipeServlet extends HttpServlet {
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER);
         getServletContext().setAttribute("cfg", cfg);
     }
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-
         HttpSession session = req.getSession();
-        String user = (String) session.getAttribute("user_curent");
+        User user= (User) session.getAttribute("user_curent");
         if(user != null) {
+            Map<String, Object> root = new HashMap<>();
+            root.put("name",user.getLogin());
+            root.put("email",user.getEmail());
+            root.put("age",user.getAge());
+            root.put("info",user.getInfo());
+            root.put("raiting",user.getTasteRaiting());
             resp.setContentType("text/html");
-            RequestDispatcher dispatcher = req.getRequestDispatcher("ftl/recipe.ftl");
-            try {
-                dispatcher.forward(req, resp);
-            } catch (ServletException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            Helper.render(req, resp, "profileSetings.ftl", root);
         }else {
             try {
                 resp.sendRedirect(req.getContextPath() + "/login");
@@ -49,4 +51,5 @@ public class RecipeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp);
     }
+
 }

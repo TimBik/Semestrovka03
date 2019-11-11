@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.*;
 import java.text.DateFormat;
@@ -20,13 +21,21 @@ import java.text.SimpleDateFormat;
 import java.util.Random;
 import org.postgresql.Driver;
 
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
+import freemarker.template.TemplateExceptionHandler;
+
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/jsp");
-        RequestDispatcher rd = req.getRequestDispatcher("Pages/register.html");
-        rd.forward(req, resp);
+        HttpSession session = req.getSession();
+        if (session.getAttribute("user_curent") == null) {
+            resp.setContentType("text/html");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("ftl/register.ftl");
+            dispatcher.forward(req, resp);
+        }
     }
 
     @Override

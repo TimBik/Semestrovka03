@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 public class RecipeDao implements CrudDao<Recipe> {
     Connection connection;
@@ -22,8 +23,37 @@ public class RecipeDao implements CrudDao<Recipe> {
     }
 
     @Override
-    public Recipe find(String by, String eal) {
-        return null;
+    public Recipe find(String by, String eql) {
+        Recipe recipe = null;
+        try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM recipe" + by)) {
+            statement.setString(1, eql);
+            ResultSet resultSet = statement.executeQuery();
+            //Если соответстующая строка найдена,обрабатываем её c помощью userRowMapper.
+            //Соответствунно получаем объект User.
+            if (resultSet.next()) {
+                recipe = createRecipe(resultSet);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return recipe;
+    }
+
+    private Recipe createRecipe(ResultSet rs) {
+        Recipe recipe = null;
+        try {
+            recipe = new Recipe(
+                    rs.getInt("id"),
+                    rs.getInt("authorid"),
+                    rs.getString("recipetext"),
+                    rs.getInt("ingredientid"),
+                    rs.getInt("imagesid"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return recipe;
     }
 
     @Override
@@ -49,8 +79,9 @@ public class RecipeDao implements CrudDao<Recipe> {
             statement.setInt(3, model.getIngredientId());
             statement.setInt(4, model.getImageId());
             DaoHelper<Recipe> daoHelper = new DaoHelper<>();
+            //daoHelper.setId(statement,model);
+            statement.setInt(9, (new Random()).nextInt() * (int) 1e5);
             daoHelper.checkingСhanges(statement);
-            daoHelper.setId(statement,model);
         } catch (SQLException e) {
             //Если сохранений провалилось, обернём пойманное исключение в непроверяемое и пробросим дальше(best-practise)
             throw new IllegalStateException(e);

@@ -1,5 +1,6 @@
 package kpfu.ITIS.Semestrovka1.Java.Servlets;
 
+import freemarker.template.*;
 import kpfu.ITIS.Semestrovka1.Java.Services.UserService;
 import kpfu.ITIS.Semestrovka1.Java.model.User;
 
@@ -14,28 +15,45 @@ import java.io.IOException;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
+
+
+
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/jsp");
-        RequestDispatcher dispatcher = req.getRequestDispatcher("Pages/login.html");
-        dispatcher.forward(req, resp);
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+        HttpSession session = req.getSession();
+        if (session.getAttribute("user_curent") == null) {
+            resp.setContentType("text/html");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("ftl/login.ftl");
+            try {
+                dispatcher.forward(req, resp);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)  {
         HttpSession session = req.getSession();
-        if(session.getAttribute("user_curent") == null) {
+        if (session.getAttribute("user_curent") == null) {
             UserService userService = new UserService();
             User user = userService.getUserByEmail(req.getParameter("email"));
+            userService.close();
             if (user != null && user.getPassword().equals(req.getParameter("password"))) {
                 session.setAttribute("user_curent", user);
-                resp.sendRedirect(req.getContextPath() + "/main");
+                try {
+                    resp.sendRedirect(req.getContextPath() + "/main");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
             } else {
                 doGet(req, resp);
             }
-        }else {
+        } else {
             doGet(req, resp);
         }
     }

@@ -1,5 +1,8 @@
 package kpfu.ITIS.Semestrovka1.Java.Servlets;
 
+import freemarker.template.Configuration;
+import freemarker.template.TemplateExceptionHandler;
+import freemarker.template.Version;
 import kpfu.ITIS.Semestrovka1.Java.model.User;
 
 import javax.servlet.RequestDispatcher;
@@ -13,20 +16,43 @@ import java.io.IOException;
 @WebServlet("/main")
 public class MainServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void init() {
+        Configuration cfg = new Configuration(Configuration.VERSION_2_3_22);
+        cfg.setServletContextForTemplateLoading(this.getServletContext(), "/ftl");
+        cfg.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER);
+        getServletContext().setAttribute("cfg", cfg);
+    }
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp){
         HttpSession session = req.getSession();
         User user= (User) session.getAttribute("user_curent");
         if(user != null) {
-            resp.setContentType("text/jsp");
-            RequestDispatcher dispatcher = req.getRequestDispatcher("Pages/main.html");
-            dispatcher.forward(req, resp);
+            resp.setContentType("text/html");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("ftl/main.ftl");
+            try {
+                dispatcher.forward(req, resp);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }else {
-            resp.sendRedirect(req.getContextPath() + "/login");
+            try {
+                resp.sendRedirect(req.getContextPath() + "/login");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)  {
+        try {
+            super.doPost(req, resp);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

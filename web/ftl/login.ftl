@@ -1,25 +1,17 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: catch_you
-  Date: 20.10.2019
-  Time: 21:19
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie-edge">
-    <title>Menu</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <link rel="stylesheet" href="../css/style.css">
-    <title>Registration</title>
+    <link rel="stylesheet" href="../css/lr.css">
+    <title>Login</title>
 </head>
 <body>
 <!--шапка-->
@@ -32,10 +24,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="navbar-item active">
+                <li class="navbar-item">
                     <a href="#" class="nav-link">Регистрация</a>
                 </li>
-                <li class="navbar-item">
+                <li class="navbar-item active">
                     <a href="#" class="nav-link">Войти</a>
                 </li>
                 <li class="navbar-item">
@@ -46,45 +38,42 @@
 
     </div>
 </nav>
-<div class="container-fluid">
+
+
+<div class="panel panel-default container-fluid">
     <br>
     <diw class="row">
         <div class="col"></div>
         <div class="col-md-3" align="center">
-            <span><h1>Registration</h1></span>
+            <span><h1>Login</h1></span>
             <span>And improve yourself</span>
             <br>
             <br>
             <br>
             <form method="post">
                 <div class="form-group">
-                    <label for="inputUsername">Username</label>
-                    <input type="text" class="form-control" id="inputUsername" placeholder="Enter username" name="username">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email">
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail">Email address</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Enter email" name="email">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
                 </div>
-                <div class="form-group">
-                    <label for="inputPassword">Password</label>
-                    <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password">
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="rememberMe">
+                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
                 </div>
-                <div class="form-group">
-                    <label for="example-date-input">Birth Date</label>
-                    <input class="form-control" type="date" id="example-date-input" name="birthDate">
-                </div>
-                <br>
-                <button input type="submit"  class="btn btn-primary" >Register</button>
+                <button input type="submit" class="btn btn-primary">Login</button>
             </form>
         </div>
         <div class="col"></div>
     </diw>
 </div>
 <br>
-<footer id="sticky-footer" class="py-4 bg-dark text-white-50">
-    <div class="container text-center">
-        <small>Copyright &copy; Cook yourself</small>
-    </div>
-</footer>
+<!--<footer id="sticky-footer" class="py-4 bg-dark text-white-50">-->
+<!--    <div class="container text-center">-->
+<!--        <small>Copyright &copy; Cook yourself</small>-->
+<!--    </div>-->
+<!--</footer>-->
 </body>
 </html>
