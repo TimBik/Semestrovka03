@@ -10,6 +10,7 @@
         <element id="directory" name="lib">
           <element id="library" level="project" name="servlet-3_0-final-jar_and_schema" />
           <element id="library" level="project" name="postgresql-42.2.8" />
+          <element id="file-copy" path="$USER_HOME$/Desktop/libs/freemarker.jar" />
         </element>
       </element>
     </root>

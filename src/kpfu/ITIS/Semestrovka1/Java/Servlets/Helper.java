@@ -7,6 +7,7 @@ import freemarker.template.TemplateException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 public class Helper {
@@ -14,8 +15,12 @@ public class Helper {
                               HttpServletResponse response,
                               String path,
                               Map<String, Object> root) {
-
-
+        try {
+            request.setCharacterEncoding("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        response.setCharacterEncoding("UTF-8");
         Configuration cfg = (Configuration) request
                 .getServletContext().getAttribute("cfg");
         try {

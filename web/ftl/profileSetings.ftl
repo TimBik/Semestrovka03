@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie-edge">
     <title>Profile</title>
@@ -12,10 +11,11 @@
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/rating.css">
+    <meta charset="UTF-8">
 </head>
 <body>
 <!--шапка-->
-    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
     <div class="container-fluid">
         <a href="#" class="navbar-brad"><img src="../img/LOGO.png"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -44,7 +44,7 @@
 
     </div>
 </nav>
-    <hr>
+<hr>
 
 <div class="container-fluid">
     <div class="row">
@@ -66,16 +66,18 @@
                     <hr>
                     <div class="text-center">
                         <button type="button" id="recBtn" class="btn btn-primary text-center" data-toggle="collapse"
-                                data-target="#myRecipe" color="#0909FF">Мои рецепты</button>
+                                data-target="#myRecipe" color="#0909FF">Мои рецепты
+                        </button>
                     </div>
                     <div class="text-center">
                         <button type="button" id="recBtn2" class="btn btn-primary text-center" data-toggle="collapse"
-                                data-target="#myRecipe" color="#0909FF">Добавить рецепт</button>
+                                data-target="#myRecipe" color="#0909FF">Добавить рецепт
+                        </button>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-10 col-lg-8">
 
-                    <form method="post" action="/profile">
+                    <form method="post">
                         <div class="form-group">
                             <label for="inputUsername">Имя пользователя</label>
                             <input type="text" class="form-control" id="inputUsername" placeholder="Enter username"
@@ -93,13 +95,11 @@
                         </div>
                         <div class="form-group">
                             <label for="example-date-input">О себе</label>
-                            <input class="form-control" type="date" id="example-date-input" name="birthDate"
+                            <input class="form-control" type="date" id="example-date-input" name="info"
                                    value="${info}">
                         </div>
                         <hr>
-                        <input type="submit" class="btn btn-primary" name ="save" value="Сохранить изменения">
-                        <input type="submit" class="btn btn-primary" name="delete" value="Удалить аккаунт">
-
+                        <input type="submit" class="btn btn-primary" name="saveSettings" value="Сохранить изменения">
                     </form>
                 </div>
             </div>
@@ -108,74 +108,73 @@
 </div>
 
 
-
 <!--Закрытая секция-->
 <!--    <div class="text-center">-->
 <!--        <button type="button" id="recBtn" class="btn btn-primary text-center" data-toggle="collapse"-->
 <!--         data-target="#myRecipe" color="#0909FF">Мои рецепты</button>-->
 <!--    </div>-->
-    <div id="myRecipe" class="collapse">
-        <div class="container-fluid padding">
-            <div class="row text-center">
-                <div class="col-sm-12 col-md-12">
-                    <div class="carousel slide">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="../img/b1.jpg">
-                                <div class="carousel-caption">
-                                    <h3 class="display-4">Домашние тонкие блинчики</h3>
-                                    <h4 class="display-8">ИНГРЕДИЕНТЫ:</h4>
-                                    <h6>3 яйца</h6>
-                                    <h6>1 ст. л. сахара</h6>
-                                    <h6>1 ч. л. соли</h6>
-                                    <h6>...</h6>
+<div id="myRecipe" class="collapse">
+    <div class="container-fluid padding">
+        <div class="row text-center">
+            <div class="col-sm-12 col-md-12">
+                <div class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="../img/b1.jpg">
+                            <div class="carousel-caption">
+                                <h3 class="display-4">Домашние тонкие блинчики</h3>
+                                <h4 class="display-8">ИНГРЕДИЕНТЫ:</h4>
+                                <h6>3 яйца</h6>
+                                <h6>1 ст. л. сахара</h6>
+                                <h6>1 ч. л. соли</h6>
+                                <h6>...</h6>
 
-                                    <button type="button" class="btn btn-outline-light btn-lg">Перейти к рецепту</button>
-                                </div>
+                                <button type="button" class="btn btn-outline-light btn-lg">Перейти к рецепту</button>
                             </div>
                         </div>
                     </div>
-                    <hr>
-                    <div class="carousel slide">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="../img/b1.jpg">
-                                <div class="carousel-caption">
-                                    <h3 class="display-4">Домашние тонкие блинчики</h3>
-                                    <h4 class="display-8">ИНГРЕДИЕНТЫ:</h4>
-                                    <h6>3 яйца</h6>
-                                    <h6>1 ст. л. сахара</h6>
-                                    <h6>1 ч. л. соли</h6>
-                                    <h6>...</h6>
-                                    <button type="button" class="btn btn-outline-light btn-lg">Перейти к рецепту</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="carousel slide">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="../img/b1.jpg">
-                                <div class="carousel-caption">
-                                    <h3 class="display-4">Домашние тонкие блинчики</h3>
-                                    <h4 class="display-8">ИНГРЕДИЕНТЫ:</h4>
-                                    <h6>3 яйца</h6>
-                                    <h6>1 ст. л. сахара</h6>
-                                    <h6>1 ч. л. соли</h6>
-                                    <h6>...</h6>
-                                    <button type="button" class="btn btn-outline-light btn-lg">Перейти к рецепту</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
                 </div>
-
+                <hr>
+                <div class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="../img/b1.jpg">
+                            <div class="carousel-caption">
+                                <h3 class="display-4">Домашние тонкие блинчики</h3>
+                                <h4 class="display-8">ИНГРЕДИЕНТЫ:</h4>
+                                <h6>3 яйца</h6>
+                                <h6>1 ст. л. сахара</h6>
+                                <h6>1 ч. л. соли</h6>
+                                <h6>...</h6>
+                                <button type="button" class="btn btn-outline-light btn-lg">Перейти к рецепту</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <hr>
+                <div class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="../img/b1.jpg">
+                            <div class="carousel-caption">
+                                <h3 class="display-4">Домашние тонкие блинчики</h3>
+                                <h4 class="display-8">ИНГРЕДИЕНТЫ:</h4>
+                                <h6>3 яйца</h6>
+                                <h6>1 ст. л. сахара</h6>
+                                <h6>1 ч. л. соли</h6>
+                                <h6>...</h6>
+                                <button type="button" class="btn btn-outline-light btn-lg">Перейти к рецепту</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
             </div>
+
         </div>
     </div>
+</div>
+</div>
 
 <figure>
     <div class="fixed-wrap">

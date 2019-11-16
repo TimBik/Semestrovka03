@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="freemarker-2.3.22">
+  <library name="freemarker">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Desktop/libs/freemarker-2.3.22.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/libs/freemarker.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

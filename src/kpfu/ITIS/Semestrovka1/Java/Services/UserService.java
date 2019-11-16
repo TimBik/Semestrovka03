@@ -25,4 +25,8 @@ public class UserService extends modelService<User> {
     public void close() {
         userDao.close();
     }
+
+    public void updateUser(User user){
+        userDao.updateUser(user);
+    }
 }

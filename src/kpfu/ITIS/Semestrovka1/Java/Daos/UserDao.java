@@ -84,6 +84,15 @@ public class UserDao implements CrudDao<User> {
     public void update() {
 
     }
+    public void updateUser(User user){
+        try (PreparedStatement statement = connection.prepareStatement(
+                "UPDATE myuser SET login = ?,info = ?")) {
+            statement.setString(1,user.getLogin());
+            statement.setString(2,user.getInfo());
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void deleate() {

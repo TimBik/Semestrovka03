@@ -2,6 +2,7 @@ package kpfu.ITIS.Semestrovka1.Java.Servlets;
 
 import freemarker.template.Configuration;
 import freemarker.template.TemplateExceptionHandler;
+import kpfu.ITIS.Semestrovka1.Java.model.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,7 +16,7 @@ import java.io.IOException;
 public class RecipeServlet extends HttpServlet {
     @Override
     public void init() {
-        Configuration cfg = new Configuration(Configuration.VERSION_2_3_22);
+        Configuration cfg = new Configuration(Configuration.VERSION_2_3_26);
         cfg.setServletContextForTemplateLoading(this.getServletContext(), "/ftl");
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER);
         getServletContext().setAttribute("cfg", cfg);
@@ -23,9 +24,8 @@ public class RecipeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-
         HttpSession session = req.getSession();
-        String user = (String) session.getAttribute("user_curent");
+        User user = (User) session.getAttribute("user_curent");
         if(user != null) {
             resp.setContentType("text/html");
             RequestDispatcher dispatcher = req.getRequestDispatcher("ftl/recipe.ftl");
