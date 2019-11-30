@@ -1,19 +1,27 @@
 package kpfu.ITIS.Semestrovka1.Java.model;
 
-public class Recipe implements HavingId{
+public class Recipe implements HavingId {
     int id;
     int autorId;
-    String recipeText;
-    int ingredientId;
-    int imageId;
+    String photo;
+    String name;
 
-    public Recipe(int id, int autorId, String recipeText, int ingredientId, int imageId) {
+    public Recipe(int id, int autorId, String photo, String name) {
         this.id = id;
         this.autorId = autorId;
-        this.recipeText = recipeText;
-        this.ingredientId = ingredientId;
-        this.imageId = imageId;
+        this.photo = photo;
+        this.name = name;
     }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 
     public int getId() {
         return id;
@@ -31,27 +39,12 @@ public class Recipe implements HavingId{
         this.autorId = autorId;
     }
 
-    public String getRecipeText() {
-        return recipeText;
+
+    public String getPhoto() {
+        return photo;
     }
 
-    public void setRecipeText(String recipeText) {
-        this.recipeText = recipeText;
-    }
-
-    public int getIngredientId() {
-        return ingredientId;
-    }
-
-    public void setIngredientId(int ingredientId) {
-        this.ingredientId = ingredientId;
-    }
-
-    public int getImageId() {
-        return imageId;
-    }
-
-    public void setImageId(int imageId) {
-        this.imageId = imageId;
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }

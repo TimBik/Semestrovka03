@@ -29,6 +29,15 @@ import freemarker.template.TemplateExceptionHandler;
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
     @Override
+    public void init() {
+        Configuration cfg = new Configuration(Configuration.VERSION_2_3_26);
+        cfg.setServletContextForTemplateLoading(this.getServletContext(), "/ftl");
+        cfg.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER);
+        getServletContext().setAttribute("cfg", cfg);
+
+    }
+
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         if (session.getAttribute("user_curent") == null) {

@@ -1,21 +1,10 @@
+<#import "base.ftl" as base/>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="ie-edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/lr.css">
-    <title>Registration</title>
-</head>
+<@base.head value="Registration"/>
 <body>
-    <!--шапка-->
-    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+<!--шапка-->
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
     <div class="container-fluid">
         <a href="#" class="navbar-brad"><img src="../img/LOGO.png"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -31,27 +20,28 @@
                     <a href="#" class="nav-link">Войти</a>
                 </li>
                 <li class="navbar-item">
-                    <a href="#" class="nav-link">Назадasdфыв</a>
+                    <a href="#" class="nav-link">Назад</a>
                 </li>
             </ul>
         </div>
 
     </div>
-    </nav>
-    <div class="container-fluid">
+</nav>
+<div class="container-fluid">
     <br>
     <diw class="row">
         <div class="col"></div>
         <div class="col-md-3" align="center">
             <span><h1>Регистрация</h1></span>
-<!--            <span>And improve yourself</span>-->
+            <!--            <span>And improve yourself</span>-->
             <br>
             <br>
             <br>
             <form method="post">
                 <div class="form-group">
                     <label for="inputUsername">Username</label>
-                    <input type="text" class="form-control" id="inputUsername" placeholder="Enter username" name="username">
+                    <input type="text" class="form-control" id="inputUsername" placeholder="Enter username"
+                           name="username">
                 </div>
                 <div class="form-group">
                     <label for="inputEmail">Email address</label>
@@ -59,20 +49,21 @@
                 </div>
                 <div class="form-group">
                     <label for="inputPassword">Password</label>
-                    <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password">
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Password"
+                           name="password">
                 </div>
                 <div class="form-group">
                     <label for="example-date-input">Birth Date</label>
                     <input class="form-control" type="date" id="example-date-input" name="birthDate">
                 </div>
                 <br>
-                <button input type="submit"  class="btn btn-primary" >Register</button>
+                <button input type="submit" class="btn btn-primary">Register</button>
             </form>
         </div>
         <div class="col"></div>
     </diw>
-    </div>
-    <br>
+</div>
+<br>
 <!--    <footer id="sticky-footer" class="py-4 bg-dark text-white-50">-->
 <!--        <div class="container text-center">-->
 <!--            <small>Copyright &copy; Cook yourself</small>-->

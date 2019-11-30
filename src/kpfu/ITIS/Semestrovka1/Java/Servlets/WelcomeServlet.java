@@ -1,5 +1,9 @@
 package kpfu.ITIS.Semestrovka1.Java.Servlets;
 
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateExceptionHandler;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +16,14 @@ import java.io.PrintWriter;
 
 @WebServlet("/welcome")
 public class WelcomeServlet extends HttpServlet {
+    @Override
+    public void init() {
+        Configuration cfg = new Configuration(Configuration.VERSION_2_3_26);
+        cfg.setServletContextForTemplateLoading(this.getServletContext(), "/ftl");
+        cfg.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER);
+        getServletContext().setAttribute("cfg", cfg);
+
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -22,10 +34,10 @@ public class WelcomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        HttpSession session = req.getSession();
         resp.setContentType("text/html");
-        RequestDispatcher dispatcher = req.getRequestDispatcher("ftl/welcome.ftl");
-        dispatcher.forward(req, resp);
+        // обработка шаблона и модели данных
+        // вывод в консоль
+        Helper.render(req,resp,"welcome.ftl",null);
     }
 
 }

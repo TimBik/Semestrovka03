@@ -1,109 +1,49 @@
+<#import "base.ftl" as base/>
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="ie-edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-    <link rel="stylesheet" href="../css/style.css">
-    <title>Welcome</title>
-</head>
+<@base.head value="Welcome"/>
 <body>
-    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-    <div class="container-fluid">
-        <a href="#" class="navbar-brad"><img src="../img/LOGO.png"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                data-target="#navbarResponsive">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="navbar-item">
-                    <a href="/login" class="nav-link">Войти</a>
-                </li>
-                <li class="navbar-item">
-                    <a href="/register" class="nav-link">Зарегистрироваться</a>
-                </li>
-            </ul>
-        </div>
 
-    </div>
-    </nav>
+<@base.slideHead/>
 
-    <!--карусель фотографий-->
-    <div class="carousel slide" data-ride="carousel" id="slides">
-        <ul class="carousel-indicators">
-            <li data-target="#slides" data-slide-to="0"></li>
-            <li data-target="#slides" data-slide-to="1"></li>
-            <li data-target="#slides" data-slide-to="2"></li>
-        </ul>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="../img/b1.jpg">
-                <div class="carousel-caption">
-                    <h1 class="display-4">Cook Yourself</h1>
-                    <button type="button" class="btn btn-outline-light btn-lg">Войти</button>
-                    <button type="button" class="btn btn-warning btn-lg">Зарегстрироваться</button>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="../img/b9.jpg">
-                <div class="carousel-caption">
-                    <h1 class="display-4">Cook Yourself</h1>
-                    <button type="button" class="btn btn-outline-light btn-lg">Войти</button>
-                    <button type="button" class="btn btn-warning btn-lg">Зарегстрироваться</button>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="../img/b8.jpg">
-                <div class="carousel-caption">
-                    <h1 class="display-4">Cook Yourself</h1>
-                    <button type="button" class="btn btn-outline-light btn-lg">Войти</button>
-                    <button type="button" class="btn btn-warning btn-lg">Зарегстрироваться</button>
-                </div>
-            </div>
+<!--карусель фотографий-->
+<@base.carousel_with_input/>
 
+<!--основной блок-->
+<div class="container-fluid">
+    <div class="row jumbotron">
+        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
+            <p class="lead">Всегда мечтали готовить самостоятельно, но не знаете, как к этому приготовиться?</p>
+            <p class="lead">Что ж настало время попробовать, что-то новое.</p>
+            <p class="lead">Мы уверены, что у нас вы найдете, чтобы приготовить</p>
 
         </div>
-
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2">
+            <a href="#">
+                <button class="btn btn-success btn-lg" type="button">Зарегистрироваться</button>
+            </a>
+        </div>
     </div>
 
-    <!--основной блок-->
-    <div class="container-fluid">
-        <div class="row jumbotron">
-            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
-                <p class="lead">Всегда мечтали готовить самостоятельно, но не знаете, как к этому приготовиться?</p>
-                <p class="lead">Что ж настало время попробовать, что-то новое.</p>
-                <p class="lead">Мы уверены, что у нас вы найдете, чтобы приготовить</p>
-
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2">
-                <a href="#"><button class="btn btn-success btn-lg" type="button">Зарегистрироваться</button></a>
-            </div>
+</div>
+<!--блок с характеристиками-->
+<div class="container-fluid">
+    <div class="row text-center alert">
+        <div class="col-12">
+            <h1 class="display-4">Надеемся вам понравится и вы вернетесь к нам за новыми рецептами</h1>
         </div>
-
+        <hr>
+        <div class="col-12">
+            <h1 class="lead">Приятного аппетита!</h1>
+            <h1 class="lead">Bon Appetit!</h1>
+            <h1 class="lead">Buon appetito!</h1>
+            <h1 class="lead">Bon appétit!</h1>
+            <h1 class="lead">祝您好胃口！</h1>
+        </div>
     </div>
-    <!--блок с характеристиками-->
-    <div class="container-fluid">
-        <div class="row text-center alert">
-            <div class="col-12">
-                <h1 class="display-4">Надеемся вам понравится и вы вернетесь к нам за новыми рецептами</h1>
-            </div>
-            <hr>
-            <div class="col-12">
-                <h1 class="lead">Приятного аппетита!</h1>
-                <h1 class="lead">Bon Appetit!</h1>
-                <h1 class="lead">Buon appetito!</h1>
-                <h1 class="lead">Bon appétit!</h1>
-                <h1 class="lead">祝您好胃口！</h1>
-            </div>
-        </div>
-
-    <!--блок с описанием языков-->
+</div>
+<!--блок с описанием языков-->
 <!--    <div class="container-fluid padding">-->
 <!--        <div class="row text-center padding">-->
 <!--            <div class="col-xs-12 col-sm-6 col-md-4">-->
@@ -123,23 +63,7 @@
 <!--    </div>-->
 
 
-        <!--футер-->
-        <footer class="container-fluid">
-            <div class="container-fluid">
-                <div class="row padding text-center">
-                    <div class="col-12">
-                        <h2>Наши контакты</h2>
-                    </div>
-                    <div class="col-12 social padding">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-google-plus-g"></i></a>
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#"><i class="fab fa-vk"></i></a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
+<!--футер-->
+<@base.end/>
 </body>
 </html>

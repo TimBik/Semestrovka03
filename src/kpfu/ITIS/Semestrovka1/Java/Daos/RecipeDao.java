@@ -13,7 +13,7 @@ import java.util.Random;
 public class RecipeDao implements CrudDao<Recipe> {
     Connection connection;
 
-    RecipeDao(Connection connection) {
+    public RecipeDao(Connection connection) {
         this.connection = connection;
     }
 
@@ -45,10 +45,9 @@ public class RecipeDao implements CrudDao<Recipe> {
         try {
             recipe = new Recipe(
                     rs.getInt("id"),
-                    rs.getInt("authorid"),
-                    rs.getString("recipetext"),
-                    rs.getInt("ingredientid"),
-                    rs.getInt("imagesid"));
+                    rs.getInt("author_id"),
+                    rs.getString("photo"),
+                    rs.getString("name"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -58,6 +57,10 @@ public class RecipeDao implements CrudDao<Recipe> {
 
     @Override
     public void update() {
+
+    }
+
+    public void updateRecipe(Recipe recipe) {
 
     }
 
@@ -72,15 +75,14 @@ public class RecipeDao implements CrudDao<Recipe> {
         //Использование try-with-resources необходимо для гарантированного закрытия statement,вне зависимости от успешности операции.
         //Аргумент Statement.RETURN_GENERATED_KEYS даёт возможность хранения сгенерированных id (ключей)  внутри statement.
         try (PreparedStatement statement = connection.prepareStatement(
-                "INSERT INTO recipe (authorid, recipetext,ingredientid,imagesid) VALUES (?,?,?,?)",
+                "INSERT INTO recipe (id,author_id,photo,name) VALUES (?,?,?,?)",
                 Statement.RETURN_GENERATED_KEYS);) {
-            statement.setInt(1, model.getAutorId());
-            statement.setString(2, model.getRecipeText());
-            statement.setInt(3, model.getIngredientId());
-            statement.setInt(4, model.getImageId());
+            statement.setInt(1,model.getId());
+            statement.setInt(2, model.getAutorId());
+            statement.setString(3, model.getPhoto());
+            statement.setString(4, model.getName());
             DaoHelper<Recipe> daoHelper = new DaoHelper<>();
             //daoHelper.setId(statement,model);
-            statement.setInt(9, (new Random()).nextInt() * (int) 1e5);
             daoHelper.checkingСhanges(statement);
         } catch (SQLException e) {
             //Если сохранений провалилось, обернём пойманное исключение в непроверяемое и пробросим дальше(best-practise)
@@ -88,30 +90,19 @@ public class RecipeDao implements CrudDao<Recipe> {
         }
     }
 
-    Optional<List<Recipe>> findAllRecipesByUser(User model) {
-        List<Recipe> recipes = null;
-        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM recipe WHERE autorid=?",
+    public Optional<List<Recipe>> findAllRecipeByUserRecipeId(int recipeId) {
+        List<Recipe> recipes = new ArrayList<>();
+        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM recipe WHERE author_id=?",
                 Statement.RETURN_GENERATED_KEYS)) {
-            ps.setLong(1, model.getRecipeId());
+            ps.setLong(1, recipeId);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                recipes.add(createRecipeByRS(rs));
+                Recipe recipe =createRecipe(rs);
+                recipes.add(recipe);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return Optional.ofNullable(recipes);
-    }
-
-    private Recipe createRecipeByRS(ResultSet rs) {
-        try {
-            return new Recipe(rs.getInt("id"),
-                    rs.getInt("authorid"),
-                    rs.getString("recipetext"),
-                    rs.getInt("ingredientid"),
-                    rs.getInt("imageid"));
-        } catch (SQLException e) {
-            throw new IllegalStateException(e);
-        }
     }
 }

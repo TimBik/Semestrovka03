@@ -1,49 +1,10 @@
+<#import "base.ftl" as base/>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="ie-edge">
-    <title>Profile</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/rating.css">
-    <meta charset="UTF-8">
-</head>
+<@base.head value="Setings"/>
 <body>
 <!--шапка-->
-<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-    <div class="container-fluid">
-        <a href="#" class="navbar-brad"><img src="../img/LOGO.png"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                data-target="#navbarResponsive">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="navbar-item">
-                    <a href="#" class="nav-link">Главная</a>
-                </li>
-                <li class="navbar-item active">
-                    <a href="#" class="nav-link">Профиль</a>
-                </li>
-                <li class="navbar-item">
-                    <a href="#" class="nav-link">Избранное</a>
-                </li>
-                <li class="navbar-item">
-                    <a href="#" class="nav-link">Чат</a>
-                </li>
-                <li class="navbar-item">
-                    <a href="#" class="nav-link">Помощь</a>
-                </li>
-            </ul>
-        </div>
-
-    </div>
-</nav>
+<@base.slideHead/>
 <hr>
 
 <div class="container-fluid">
@@ -113,69 +74,6 @@
 <!--        <button type="button" id="recBtn" class="btn btn-primary text-center" data-toggle="collapse"-->
 <!--         data-target="#myRecipe" color="#0909FF">Мои рецепты</button>-->
 <!--    </div>-->
-<div id="myRecipe" class="collapse">
-    <div class="container-fluid padding">
-        <div class="row text-center">
-            <div class="col-sm-12 col-md-12">
-                <div class="carousel slide">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="../img/b1.jpg">
-                            <div class="carousel-caption">
-                                <h3 class="display-4">Домашние тонкие блинчики</h3>
-                                <h4 class="display-8">ИНГРЕДИЕНТЫ:</h4>
-                                <h6>3 яйца</h6>
-                                <h6>1 ст. л. сахара</h6>
-                                <h6>1 ч. л. соли</h6>
-                                <h6>...</h6>
-
-                                <button type="button" class="btn btn-outline-light btn-lg">Перейти к рецепту</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="carousel slide">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="../img/b1.jpg">
-                            <div class="carousel-caption">
-                                <h3 class="display-4">Домашние тонкие блинчики</h3>
-                                <h4 class="display-8">ИНГРЕДИЕНТЫ:</h4>
-                                <h6>3 яйца</h6>
-                                <h6>1 ст. л. сахара</h6>
-                                <h6>1 ч. л. соли</h6>
-                                <h6>...</h6>
-                                <button type="button" class="btn btn-outline-light btn-lg">Перейти к рецепту</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="carousel slide">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="../img/b1.jpg">
-                            <div class="carousel-caption">
-                                <h3 class="display-4">Домашние тонкие блинчики</h3>
-                                <h4 class="display-8">ИНГРЕДИЕНТЫ:</h4>
-                                <h6>3 яйца</h6>
-                                <h6>1 ст. л. сахара</h6>
-                                <h6>1 ч. л. соли</h6>
-                                <h6>...</h6>
-                                <button type="button" class="btn btn-outline-light btn-lg">Перейти к рецепту</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-            </div>
-
-        </div>
-    </div>
-</div>
-</div>
-
 <figure>
     <div class="fixed-wrap">
         <div id="fixedpr">
@@ -186,22 +84,7 @@
 
 </figure>
 <!--футер-->
-<footer class="container-fluid">
-    <div class="container-fluid">
-        <div class="row padding text-center">
-            <div class="col-12">
-                <h2>Наши контакты</h2>
-            </div>
-            <div class="col-12 social padding">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-google-plus-g"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
-                <a href="#"><i class="fab fa-vk"></i></a>
-            </div>
-        </div>
-    </div>
-</footer>
+<@end/>
 
 
 </body>

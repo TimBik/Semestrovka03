@@ -16,7 +16,14 @@ import java.io.IOException;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
+    @Override
+    public void init() {
+        Configuration cfg = new Configuration(Configuration.VERSION_2_3_26);
+        cfg.setServletContextForTemplateLoading(this.getServletContext(), "/ftl");
+        cfg.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER);
+        getServletContext().setAttribute("cfg", cfg);
 
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
@@ -36,7 +43,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)  {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
         HttpSession session = req.getSession();
         if (session.getAttribute("user_curent") == null) {
             UserService userService = new UserService();
