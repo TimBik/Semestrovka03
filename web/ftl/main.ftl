@@ -1,15 +1,17 @@
-<#import "base.ftl" as base>
+<#import "base.ftl" as base/>
+<#import "slideHeadMain.ftl" as slideHeadMain/>
+<#import "headWelcome.ftl" as headWelcome/>
 <!DOCTYPE html>
 <html lang="en">
-<@base.head value="Main"/>
+<@headWelcome.head value="Main"/>
 <body>
 <!--шапка-->
-<@base.slideHead/>
+<@slideHeadMain.slideHead/>
 
 <!--поиск-->
-<form class="d1">
-    <input type="text" placeholder="Искать здесь...">
-    <button type="submit"></button>
+<form method="get" class="d1">
+    <input type="text" name="finder" placeholder="Искать здесь...">
+    <button input type="submit"></button>
 </form>
 
 <!--карусель фотографий-->

@@ -2,6 +2,16 @@ package kpfu.ITIS.Semestrovka1.Java.Servlets;
 
 import freemarker.template.Configuration;
 import freemarker.template.TemplateExceptionHandler;
+import kpfu.ITIS.Semestrovka1.Java.Helper.CookieChecker;
+import kpfu.ITIS.Semestrovka1.Java.Helper.Parser;
+import kpfu.ITIS.Semestrovka1.Java.Helper.UserGettingFromSessioOrCookie;
+import kpfu.ITIS.Semestrovka1.Java.Services.IngredientService;
+import kpfu.ITIS.Semestrovka1.Java.Services.RecipeService;
+import kpfu.ITIS.Semestrovka1.Java.Services.StepService;
+import kpfu.ITIS.Semestrovka1.Java.Services.UserService;
+import kpfu.ITIS.Semestrovka1.Java.model.Ingredient;
+import kpfu.ITIS.Semestrovka1.Java.model.Recipe;
+import kpfu.ITIS.Semestrovka1.Java.model.Step;
 import kpfu.ITIS.Semestrovka1.Java.model.User;
 
 import javax.servlet.RequestDispatcher;
@@ -12,7 +22,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-@WebServlet("/recipe")
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@WebServlet("/recipe/*")
 public class RecipeServlet extends HttpServlet {
     @Override
     public void init() {
@@ -24,19 +38,26 @@ public class RecipeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-        HttpSession session = req.getSession();
-        User user = (User) session.getAttribute("user_curent");
-        if(user != null) {
+        User user = new UserGettingFromSessioOrCookie().getUser(req);
+        if (user != null) {
+            int recipeId = new Parser().parse(req.getPathInfo());
+            RecipeService rs = new RecipeService();
+            Recipe recipe = rs.getRecipeById(recipeId);
+            rs.close();
+            StepService ss = new StepService();
+            List<Step> steps = ss.getAllStepsByRecipeId(recipeId);
+            ss.close();
+            IngredientService is = new IngredientService();
+            List<Ingredient> ingredients = is.getAllIngredientByRecipeId(recipeId);
+            is.close();
+            Map<String, Object> root = new HashMap<>();
+            root.put("steps", steps);
+            root.put("ingredients", ingredients);
+            root.put("recipe", recipe);
+            root.put("id", user.getId());
             resp.setContentType("text/html");
-            RequestDispatcher dispatcher = req.getRequestDispatcher("ftl/recipe.ftl");
-            try {
-                dispatcher.forward(req, resp);
-            } catch (ServletException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }else {
+            Helper.render(req, resp, "recipe.ftl", root);
+        } else {
             try {
                 resp.sendRedirect(req.getContextPath() + "/login");
             } catch (IOException e) {

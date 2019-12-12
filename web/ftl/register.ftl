@@ -1,32 +1,13 @@
 <#import "base.ftl" as base/>
+<#import "slideHeadWelcome.ftl" as slideHeadWelcome/>
+
 <!DOCTYPE html>
 <html lang="en">
 <@base.head value="Registration"/>
 <body>
 <!--шапка-->
-<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-    <div class="container-fluid">
-        <a href="#" class="navbar-brad"><img src="../img/LOGO.png"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                data-target="#navbarResponsive">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="navbar-item active">
-                    <a href="#" class="nav-link">Регистрация</a>
-                </li>
-                <li class="navbar-item">
-                    <a href="#" class="nav-link">Войти</a>
-                </li>
-                <li class="navbar-item">
-                    <a href="#" class="nav-link">Назад</a>
-                </li>
-            </ul>
-        </div>
+<@slideHeadWelcome.slideHead/>
 
-    </div>
-</nav>
 <div class="container-fluid">
     <br>
     <diw class="row">

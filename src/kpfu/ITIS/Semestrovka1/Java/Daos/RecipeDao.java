@@ -26,7 +26,7 @@ public class RecipeDao implements CrudDao<Recipe> {
     public Recipe find(String by, String eql) {
         Recipe recipe = null;
         try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM recipe" + by)) {
-            statement.setString(1, eql);
+            statement.setInt(1, Integer.parseInt(eql));
             ResultSet resultSet = statement.executeQuery();
             //Если соответстующая строка найдена,обрабатываем её c помощью userRowMapper.
             //Соответствунно получаем объект User.
@@ -77,7 +77,7 @@ public class RecipeDao implements CrudDao<Recipe> {
         try (PreparedStatement statement = connection.prepareStatement(
                 "INSERT INTO recipe (id,author_id,photo,name) VALUES (?,?,?,?)",
                 Statement.RETURN_GENERATED_KEYS);) {
-            statement.setInt(1,model.getId());
+            statement.setInt(1, model.getId());
             statement.setInt(2, model.getAutorId());
             statement.setString(3, model.getPhoto());
             statement.setString(4, model.getName());
@@ -90,6 +90,7 @@ public class RecipeDao implements CrudDao<Recipe> {
         }
     }
 
+
     public Optional<List<Recipe>> findAllRecipeByUserRecipeId(int recipeId) {
         List<Recipe> recipes = new ArrayList<>();
         try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM recipe WHERE author_id=?",
@@ -97,12 +98,40 @@ public class RecipeDao implements CrudDao<Recipe> {
             ps.setLong(1, recipeId);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Recipe recipe =createRecipe(rs);
+                Recipe recipe = createRecipe(rs);
                 recipes.add(recipe);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return Optional.ofNullable(recipes);
+    }
+
+    public List<Recipe> findAllRecipes() {
+        List<Recipe> recipes = new ArrayList<>();
+        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM recipe",
+                Statement.RETURN_GENERATED_KEYS)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Recipe recipe = createRecipe(rs);
+                recipes.add(recipe);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return recipes;
+    }
+
+
+    public void close() {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Recipe findById(int id) {
+        return find(" Where id=?", id + "");
     }
 }

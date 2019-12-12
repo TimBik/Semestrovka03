@@ -1,12 +1,12 @@
 <#import "base.ftl" as base/>
+<#import "slideHeadWelcome.ftl" as slideHeadWelcome/>
+<#import "headWelcome.ftl" as headWelcome/>
 
 <!DOCTYPE html>
 <html lang="en">
-<@base.head value="Welcome"/>
+<@headWelcome.head value="Welcome"/>
 <body>
-
-<@base.slideHead/>
-
+<@slideHeadWelcome.slideHead/>
 <!--карусель фотографий-->
 <@base.carousel_with_input/>
 
@@ -20,7 +20,7 @@
 
         </div>
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2">
-            <a href="#">
+            <a href="register">
                 <button class="btn btn-success btn-lg" type="button">Зарегистрироваться</button>
             </a>
         </div>

@@ -1,4 +1,4 @@
-package kpfu.ITIS.Semestrovka1.Java.Services;
+package kpfu.ITIS.Semestrovka1.Java.Helper;
 
 public class Args {
     private static final String dbPath = "jdbc:postgresql://localhost:5432/CookYourself";

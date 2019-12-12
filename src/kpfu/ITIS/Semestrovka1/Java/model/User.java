@@ -12,7 +12,9 @@ public class User implements HavingId{
     String info;
     int recipeId;
     int messageId;
-
+    public User(){
+        this.id = 0;
+    }
     public User(int id, String login, String password, int tasteRaiting, String email, Date age, String info, int recipeId, int messageId) {
         this.id = id;
         this.login = login;

@@ -2,6 +2,10 @@ package kpfu.ITIS.Semestrovka1.Java.Servlets;
 
 import freemarker.template.Configuration;
 import freemarker.template.TemplateExceptionHandler;
+import kpfu.ITIS.Semestrovka1.Java.Helper.AllRecipesAndItsThingsByRecipes;
+import kpfu.ITIS.Semestrovka1.Java.Helper.RecipesAndItsIngredientsAndSteps;
+import kpfu.ITIS.Semestrovka1.Java.Helper.UserGettingFromSessioOrCookie;
+import kpfu.ITIS.Semestrovka1.Java.Services.FindRecipesService;
 import kpfu.ITIS.Semestrovka1.Java.model.User;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet("/main")
 public class MainServlet extends HttpServlet {
@@ -25,18 +31,19 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-        HttpSession session = req.getSession();
-        User user = (User) session.getAttribute("user_curent");
+        User user = new UserGettingFromSessioOrCookie().getUser(req);
         if (user != null) {
-            resp.setContentType("text/html");
-            RequestDispatcher dispatcher = req.getRequestDispatcher("ftl/main.ftl");
-            try {
-                dispatcher.forward(req, resp);
-            } catch (ServletException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+            Map<String, Object> root = new HashMap<>();
+            if (req.getParameter("finder") != null) {
+                String finder = req.getParameter("finder");
+                root.put("recipesAndItsIngredientsAndSteps",
+                        AllRecipesAndItsThingsByRecipes.recipesAndItsIngredientsAndSteps(
+                                new FindRecipesService().findAllRecipes(finder)));
+                root.put("userId",user.getId());
             }
+            resp.setContentType("text/html");
+            Helper.render(req, resp, "main.ftl", root);
+
         } else {
             try {
                 resp.sendRedirect(req.getContextPath() + "/login");

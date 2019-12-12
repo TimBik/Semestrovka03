@@ -1,10 +1,12 @@
 <#import "base.ftl" as base/>
+<#import "slideHeadMain.ftl" as slideHeadMain/>
+
 <!DOCTYPE html>
 <html lang="en">
 <@base.head value="Setings"/>
 <body>
 <!--шапка-->
-<@base.slideHead/>
+<@slideHeadMain.slideHead/>
 <hr>
 
 <div class="container-fluid">
@@ -56,7 +58,7 @@
                         </div>
                         <div class="form-group">
                             <label for="example-date-input">О себе</label>
-                            <input class="form-control" type="date" id="example-date-input" name="info"
+                            <input class="form-control" type="text"  name="info"
                                    value="${info}">
                         </div>
                         <hr>

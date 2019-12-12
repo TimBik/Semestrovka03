@@ -3,6 +3,7 @@ package kpfu.ITIS.Semestrovka1.Java.Daos;
 import kpfu.ITIS.Semestrovka1.Java.model.User;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -67,8 +68,8 @@ public class UserDao implements CrudDao<User> {
         return user;
     }
 
-    public Optional<List<User>> findAll() {
-        List<User> users = null;
+    public List<User> findAll() {
+        List<User> users = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM myuser")) {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
@@ -77,19 +78,22 @@ public class UserDao implements CrudDao<User> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return Optional.ofNullable(users);
+        return users;
     }
 
     @Override
     public void update() {
 
     }
-    public void updateUser(User user){
+
+    public void updateUser(User user) {
         try (PreparedStatement statement = connection.prepareStatement(
-                "UPDATE myuser SET login = ?,info = ?")) {
-            statement.setString(1,user.getLogin());
-            statement.setString(2,user.getInfo());
-        }catch (SQLException e){
+                "UPDATE myuser SET login = ?,info = ? WHERE id=?")) {
+            statement.setString(1, user.getLogin());
+            statement.setString(2, user.getInfo());
+            statement.setInt(3, user.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -121,6 +125,18 @@ public class UserDao implements CrudDao<User> {
 
         } catch (SQLException e) {
             //Если сохранений провалилось, обернём пойманное исключение в непроверяемое и пробросим дальше(best-practise)
+            e.printStackTrace();
+        }
+    }
+
+    public void addFavoriteRecipe(int userId, int recipeId) {
+        try (PreparedStatement statement = connection.prepareStatement(
+                "INSERT INTO users_recipes(id_user, id_recipe) VALUES(?,?)")) {
+            statement.setInt(1, userId);
+            statement.setInt(2, recipeId);
+            DaoHelper<User> daoHelper = new DaoHelper<>();
+            daoHelper.checkingСhanges(statement);
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

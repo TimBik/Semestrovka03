@@ -1,11 +1,12 @@
 package kpfu.ITIS.Semestrovka1.Java.Services;
 
+import kpfu.ITIS.Semestrovka1.Java.Helper.Args;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class modelService<T> {
-
     public static Connection getConnection() {
         try {
             Class.forName(Args.getDbDriver());
@@ -17,4 +18,5 @@ public class modelService<T> {
         }
         return null;
     }
+
 }

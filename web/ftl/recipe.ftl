@@ -1,99 +1,60 @@
 <#import "base.ftl" as base/>
+<#import "slideHeadMain.ftl" as slideHeadMain/>
+
 <!DOCTYPE html>
 <html lang="en">
 <@base.head value="Recipe"/>
+
 <body>
 <!--шапка-->
-<@base.slideHead/>
+<@slideHeadMain.slideHead/>
 <!--карусель фотографий-->
-<div class="carousel slide" data-ride="carousel" id="slides">
-    <ul class="carousel-indicators">
-        <li data-target="#slides" data-slide-to="0"></li>
-        <li data-target="#slides" data-slide-to="1"></li>
-        <li data-target="#slides" data-slide-to="2"></li>
-        <li data-target="#slides" data-slide-to="3"></li>
-        <li data-target="#slides" data-slide-to="4"></li>
-        <li data-target="#slides" data-slide-to="5"></li>
-        <li data-target="#slides" data-slide-to="6"></li>
-    </ul>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="../img/b1.jpg">
-            <div class="carousel-caption">
-                <h1 class="display-4">Домашние тонкие блинчики</h1>
-
-                <button type="button" class="btn btn-outline-light btn-lg">Добавить в избранное</button>
-                <!--                    <button type="button" class="btn btn-warning btn-lg">Перейти к рецепту</button>-->
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="../img/b2.jpg">
-            <div class="carousel-caption">
-                <h1 class="display-4">ИНГРЕДИЕНТЫ</h1>
-                <h6>3 яйца</h6>
-                <h6>1 ст. л. сахара</h6>
-                <h6>1 ч. л. соли</h6>
-                <h6>500 мл молока</h6>
-                <h6>280 г муки</h6>
-                <h6>3 ст. л. растительного масла плюс для жарки</h6>
-                <h6>сливочное масло, сметана, варенье для подачи</h6>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="../img/b3.jpg">
-        </div>
-        <div class="carousel-item">
-            <img src="../img/b4.jpg">
-        </div>
-        <div class="carousel-item">
-            <img src="../img/b5.jpg">
-        </div>
-        <div class="carousel-item">
-            <img src="../img/b6.jpg">
-        </div>
-        <div class="carousel-item">
-            <img src="../img/b7.jpg">
-        </div>
-
-    </div>
-
-</div>
+<@base.Recipes/>
 
 <!--rating-->
-<ul class="rating">
-    <li class="current" style="width: 20%;"><span class="star1" title="Плохо"></span></li>
-    <li><span class="star2" title="Нормально"></span></li>
-    <li><span class="star3" title="Средне"></span></li>
-    <li><span class="star4" title="Хорошо"></span></li>
-    <li><span class="star5" title="Отлично"></span></li>
-</ul>
+<!--<ul class="rating">-->
+<!--    <li class="current" style="width: 20%;"><span class="star1" title="Плохо"></span></li>-->
+<!--    <li><span class="star2" title="Нормально"></span></li>-->
+<!--    <li><span class="star3" title="Средне"></span></li>-->
+<!--    <li><span class="star4" title="Хорошо"></span></li>-->
+<!--    <li><span class="star5" title="Отлично"></span></li>-->
+<!--</ul>-->
 
 <!--основной блок-->
 <div class="container-fluid">
     <div class="row jumbotron">
-        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
-            <p class="lead">ИНГРЕДИЕНТЫ</p>
-            <p class="lead">3 яйца</p>
-            <p class="lead">1 ст. л. сахара</p>
-            <p class="lead">1 ч. л. соли</p>
-            <p class="lead">500 мл молока</p>
-            <p class="lead">280 г муки</p>
-            <p class="lead">3 ст. л. растительного масла плюс для жарки</p>
-            <p class="lead">сливочное масло, сметана, варенье для подачи</p>
+        <ul class="carousel-indicators">
+            <li data-target="#slides" data-slide-to="0"></li>
+            <li data-target="#slides" data-slide-to="1"></li>
+            <li data-target="#slides" data-slide-to="2"></li>
+            <li data-target="#slides" data-slide-to="3"></li>
+            <li data-target="#slides" data-slide-to="4"></li>
+            <li data-target="#slides" data-slide-to="5"></li>
+            <li data-target="#slides" data-slide-to="6"></li>
+        </ul>
 
-            <p class="lead">ПОШАГОВЫЙ РЕЦЕПТ ПРИГОТОВЛЕНИЯ</p>
-            <p class="lead">Шаг 1:В миске слегка взбить венчиком яйца с сахаром и солью.</p>
-            <p class="lead">Шаг 2: Добавить половину молока, перемешать.</p>
-            <p class="lead">Шаг 3: Понемногу добавить муку, перемешивая до консистенции однородной густой сметаны..</p>
-            <p class="lead">Шаг 4: Добавить остальное молоко и тщательно перемешать. Добавить масло, перемешать и
-                оставить на 10-15 минут..</p>
-            <p class="lead">Шаг 5: Нагреть чугунную сковороду, смазать растительным маслом и жарить блины с двух сторон.
-                Выкладывать их стопкой, смазывая маленьким кусочком сливочного масла. Подавайте с вареньем и
-                сметаной.</p>
+        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
+            <#if ingredients??>
+                <p class="lead">ИНГРЕДИЕНТЫ</p>
+                <#list ingredients as ingredient>
+                    <p class="lead">${ingredient.name} ${ingredient.amount}</p>
+                </#list>
+            </#if>
+            <#if steps??>
+                <p class="lead">ПОШАГОВЫЙ РЕЦЕПТ ПРИГОТОВЛЕНИЯ</p>
+                <#list steps as step>
+                    <p class="lead">${step.text}</p>
+                </#list>
+            </#if>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2">
             <a href="#">
-                <button class="btn btn-success btn-lg" type="button">Добавить в избранное</button>
+                <#if id??>
+                    <script type="text/javascript">
+                        document.write('<input type="button" onclick="vote(${id},\'${recipe.id}\')" class="btn btn-success btn-success btn-lg" value="Добавить в избранное"/>');
+                        document.write('<div id="vote_status"></div>');
+                    </script>
+                </#if>
             </a>
         </div>
     </div>

@@ -1,9 +1,14 @@
 package kpfu.ITIS.Semestrovka1.Java.model;
 
-public class Message implements HavingId{
+import java.sql.Date;
+import java.time.LocalDateTime;
+
+public class Message implements HavingId {
     int id;
     int fromUserId;
+    int toUserId;
     String text;
+    LocalDateTime date;
 
     public int getId() {
         return id;
@@ -29,9 +34,32 @@ public class Message implements HavingId{
         this.text = text;
     }
 
-    public Message(int id, int fromUserId, String text) {
+    public int getToUserId() {
+        return toUserId;
+    }
+
+    public void setToUserId(int toUserId) {
+        this.toUserId = toUserId;
+    }
+
+
+    public Message() {
+        this.id = 0;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
+    public Message(int id, int fromUserId, int toUserId, String text, LocalDateTime date) {
         this.id = id;
         this.fromUserId = fromUserId;
+        this.toUserId = toUserId;
         this.text = text;
+        this.date = date;
     }
 }

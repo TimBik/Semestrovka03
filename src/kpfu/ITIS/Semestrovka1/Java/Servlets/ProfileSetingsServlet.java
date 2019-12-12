@@ -2,16 +2,14 @@ package kpfu.ITIS.Semestrovka1.Java.Servlets;
 
 import freemarker.template.Configuration;
 import freemarker.template.TemplateExceptionHandler;
+import kpfu.ITIS.Semestrovka1.Java.Helper.CookieChecker;
+import kpfu.ITIS.Semestrovka1.Java.Helper.UserGettingFromSessioOrCookie;
 import kpfu.ITIS.Semestrovka1.Java.Services.UserService;
 import kpfu.ITIS.Semestrovka1.Java.model.User;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,6 +29,13 @@ public class ProfileSetingsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user_curent");
+
+        if (user == null) {
+            UserService us = new UserService();
+            user = us.getUserByEmail(new CookieChecker().getUserEmail(req));
+            us.close();
+        }
+
         if (user != null) {
 
             resp.setContentType("text/html");
@@ -47,8 +52,7 @@ public class ProfileSetingsServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        User user = (User) session.getAttribute("user_curent");
+        User user = new UserGettingFromSessioOrCookie().getUser(req);
         if (user != null) {
             if (req.getParameter("saveSettings") != null) {
                 user.setLogin(req.getParameter("username"));
@@ -72,7 +76,9 @@ public class ProfileSetingsServlet extends HttpServlet {
     }
 
     public void saveSettings(User user) {
-        new UserService().updateUser(user);
+        UserService us = new UserService();
+        us.updateUser(user);
+        us.close();
     }
 
 

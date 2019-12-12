@@ -1,7 +1,10 @@
 package kpfu.ITIS.Semestrovka1.Java.Services;
 
 import kpfu.ITIS.Semestrovka1.Java.Daos.UserDao;
+import kpfu.ITIS.Semestrovka1.Java.Helper.UserAndLastMessage;
 import kpfu.ITIS.Semestrovka1.Java.model.User;
+
+import java.util.List;
 
 public class UserService extends modelService<User> {
     UserDao userDao;
@@ -19,6 +22,7 @@ public class UserService extends modelService<User> {
     }
 
     public User getUserByEmail(String email) {
+        if (email == null) return null;
         return userDao.findUserByEmail(email).orElse(null);
     }
 
@@ -26,7 +30,16 @@ public class UserService extends modelService<User> {
         userDao.close();
     }
 
-    public void updateUser(User user){
+    public void updateUser(User user) {
         userDao.updateUser(user);
     }
+
+    public void addFavoriteRecipe(int userId, int recipeId) {
+        userDao.addFavoriteRecipe(userId, recipeId);
+    }
+
+    public List<User> findAllUsers() {
+        return userDao.findAll();
+    }
+
 }

@@ -111,4 +111,12 @@ public class StepDao implements CrudDao<Step> {
         }
         return steps;
     }
+
+    public void close() {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -4,6 +4,7 @@ import kpfu.ITIS.Semestrovka1.Java.Daos.IngredientDao;
 import kpfu.ITIS.Semestrovka1.Java.Daos.RecipeDao;
 import kpfu.ITIS.Semestrovka1.Java.model.Ingredient;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -21,11 +22,14 @@ public class IngredientService extends modelService{
     }
 
     public void save(Ingredient ingredient) {
-        new IngredientDao(getConnection()).save(ingredient);
+        ingredientDao.save(ingredient);
     }
 
     public List<Ingredient> getAllIngredientByRecipeId(int id) {
         return ingredientDao.findAllIngredientByRecipeId(id);
     }
 
+    public void close()  {
+        ingredientDao.close();
+    }
 }

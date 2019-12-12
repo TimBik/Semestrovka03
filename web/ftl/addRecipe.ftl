@@ -1,10 +1,12 @@
 <#import "base.ftl" as base/>
+<#import "slideHeadMain.ftl" as slideHeadMain/>
+
 <!DOCTYPE html>
 <html lang="en">
 <@base.head value="addRecipe"/>
 <body>
 <!--шапка-->
-<@base.slideHead/>
+<@slideHeadMain.slideHead/>
 <hr>
 <!--<div id="pageAdd">-->
 <form method="post" enctype="multipart/form-data" class="container-fluid row jumbotron">
