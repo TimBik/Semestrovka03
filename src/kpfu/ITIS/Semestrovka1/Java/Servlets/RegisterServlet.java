@@ -67,7 +67,7 @@ public class RegisterServlet extends HttpServlet {
     }
 
     private Date createDateSql(String date) {
-        DateFormat formatter = new SimpleDateFormat("dd.MM.yy");
+        DateFormat formatter = new SimpleDateFormat("yy-MM-dd");
         java.util.Date utilDate = null;
         try {
             utilDate = formatter.parse(date);

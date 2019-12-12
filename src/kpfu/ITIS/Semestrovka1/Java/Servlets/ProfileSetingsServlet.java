@@ -59,9 +59,9 @@ public class ProfileSetingsServlet extends HttpServlet {
                 user.setInfo(req.getParameter("info"));
                 saveSettings(user);
             }
-            Helper.render(req, resp, "profile.ftl", createRoot(user));
+            resp.sendRedirect(req.getContextPath() + "/profile");
         } else {
-
+            resp.sendRedirect(req.getContextPath() + "/login");
         }
     }
 

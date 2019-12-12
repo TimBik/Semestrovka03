@@ -1,3 +1,4 @@
+<#ftl encoding="UTF-8"/>
 <#import "base.ftl" as base/>
 <#import "slideHeadMain.ftl" as slideHeadMain/>
 

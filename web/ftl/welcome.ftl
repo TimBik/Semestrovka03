@@ -1,3 +1,4 @@
+<#ftl encoding="UTF-8"/>
 <#import "base.ftl" as base/>
 <#import "slideHeadWelcome.ftl" as slideHeadWelcome/>
 <#import "headWelcome.ftl" as headWelcome/>
