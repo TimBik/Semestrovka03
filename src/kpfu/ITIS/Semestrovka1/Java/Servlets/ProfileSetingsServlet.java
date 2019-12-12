@@ -3,6 +3,7 @@ package kpfu.ITIS.Semestrovka1.Java.Servlets;
 import freemarker.template.Configuration;
 import freemarker.template.TemplateExceptionHandler;
 import kpfu.ITIS.Semestrovka1.Java.Helper.CookieChecker;
+import kpfu.ITIS.Semestrovka1.Java.Helper.Recode;
 import kpfu.ITIS.Semestrovka1.Java.Helper.UserGettingFromSessioOrCookie;
 import kpfu.ITIS.Semestrovka1.Java.Services.UserService;
 import kpfu.ITIS.Semestrovka1.Java.model.User;
@@ -55,8 +56,9 @@ public class ProfileSetingsServlet extends HttpServlet {
         User user = new UserGettingFromSessioOrCookie().getUser(req);
         if (user != null) {
             if (req.getParameter("saveSettings") != null) {
-                user.setLogin(req.getParameter("username"));
-                user.setInfo(req.getParameter("info"));
+                Recode r = new Recode();
+                user.setLogin(r.recode(req.getParameter("username")));
+                user.setInfo(r.recode(req.getParameter("info")));
                 saveSettings(user);
             }
             resp.sendRedirect(req.getContextPath() + "/profile");
